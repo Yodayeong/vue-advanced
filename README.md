@@ -1,11 +1,9 @@
 Settings.
-<br>
 - node version: v16.20.1
 - npm version: 8.19.4
 <br>
 
 VSCode 플러그인 리스트
-<br>
 - Atom Keymap : 아톰의 키 설정을 불러오는 플러그인
 - Vetur : Vue.js 플러그인
 - Night Owl : 코드 하이라이팅 플러그인
@@ -18,5 +16,4 @@ VSCode 플러그인 리스트
 <br>
 
 Vue.js 스타일 가이드 및 코딩 컨벤션
-<br>
 - https://v2.vuejs.org/v2/style-guide/?redirect=true
