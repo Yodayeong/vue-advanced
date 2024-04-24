@@ -1,5 +1,3 @@
-Settings.
+vue-study.
 <br>
-- node version: v16.20.1
-- npm version: 8.19.4
-<br>
+- branch 별로 내용 업데이트 및 커밋
