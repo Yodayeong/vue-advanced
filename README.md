@@ -1,3 +1,5 @@
-vue-advanced.
+Settings.
 <br>
-- branch 별로 내용 정리 및 커밋
+- node version: v16.20.1
+- npm version: 8.19.4
+<br>
