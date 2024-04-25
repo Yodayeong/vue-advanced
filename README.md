@@ -58,7 +58,7 @@
   new Vue({
     render: h => h(App),
     router,
-  }).$mount('#app')z
+  }).$mount('#app')
   ```
 
   
