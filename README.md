@@ -1,3 +1,5 @@
-vue-study.
+vue 프로젝트 생성
+- vue create vue-news
 <br>
-- branch 별로 내용 업데이트 및 커밋
+vue 프로젝트 실행
+- npm run serve
