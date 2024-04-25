@@ -46,3 +46,14 @@ export default {
 - "id=app"인 컴포넌트
   - Vue logo 이미지
   - HelloWorld 컴포넌트
+
+<br>
+ESLint란
+- 오류가 없는 코딩을 하도록 유도하는 장치
+- ESLint를 끄기 위해서는 script 태그 아래에 /* eslint-disable */
+- 또는, view.config.js라는 파일 생성 후, 
+```js
+module.exports = {
+  lintOnSave: false
+}
+```
