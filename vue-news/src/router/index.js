@@ -11,12 +11,16 @@ export const router = new VueRouter({
     //라우터의 정보를 담는다.
     routes: [
         {
+            path: '/',
+            redirect: '/news',
+        },
+        {
             //path: url 주소
             path: '/news',
+            //component: url 주소로 갔을 때 표시될 컴포넌트
             component: NewsView,
         },
         {
-            //component: url 주소로 갔을 때 표시될 컴포넌트
             path: '/ask',
             component: AskView,
         },
