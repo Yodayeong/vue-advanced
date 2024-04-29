@@ -1,3 +1,2 @@
-vue-study.
-<br>
-- branch 별로 내용 업데이트 및 커밋
+axios를 이용한 api 호출
+- npm i axios --save
