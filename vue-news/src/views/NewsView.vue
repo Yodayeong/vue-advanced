@@ -14,9 +14,12 @@ export default {
     }
   },
   created() {
+    console.log('호출 전: ', this)
+    //바인딩
     var vm = this;
     fetchNewsList()
       .then(function(response) {
+        console.log('호출 후: ', this)
         vm.news = response.data;
       })
       .catch(function(error) {
