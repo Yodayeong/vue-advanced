@@ -18,6 +18,7 @@
             //ajax는 데이터를 요청할 때 쓰는 jquery 내장 API
             $.ajax({
                 url: 'https://api.hnpwa.com/v0/news/1.json',
+                //비동기 처리 callback 함수
                 success: function(data) {
                     console.log('데이터 호출 결과', data);
                     result = data;
