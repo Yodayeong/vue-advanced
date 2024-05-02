@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <div>jquery ajax</div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        function callAjax() {
+            //프로미스 객체
+            //resolve, reject(성공, 실패)를 인자로 가짐
+            return new Promise(function(resolve, reject) {
+                $.ajax({
+                    url: 'https://api.hnpwa.com/v0/news/1.json',
+                    success: function(data) {
+                        resolve(data);
+                    }
+                });
+            })
+        }
+
+        function fetchData() {
+            //1.
+            var result = [];
+
+            //프로미스 객체를 return
+            callAjax()
+                //프로미스 객체의 결과값은 내부객체이기 때문에,
+                //then과 catch로만 접근 가능
+
+                //프로미스가 fulfilled 되었을 때, resolve 값을 넘겨받음
+                .then(function(data) {
+                    console.log('데이터 호출 결과', data);
+                    result = data;
+                    console.log('함수 결과', result);
+                })
+                //장점. 체이닝을 할 수 있다.
+                //.then
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>
