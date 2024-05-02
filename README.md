@@ -23,12 +23,14 @@ axios를 이용한 api 호출
            users: []
          }
        },
+       //created(): 컴포넌트가 생성되자마자 실행되는 로직이 들어감
        created() {
          var vm = this;
          axios.get('https://api.hnpwa.com/v0/news/1.json');
            .then(function(response) {
              vm.users = response.data;
            })
+           //에러 핸들링에 대한 처리를 catch에서 다 받아줌
            .catch(function(error) {
              console.log(error);
            })
