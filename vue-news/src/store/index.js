@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { fetchNewsList } from '../api/index.js';
+import { fetchAskList } from '../api/index.js'
 
 Vue.use(Vuex);
 
@@ -14,11 +15,15 @@ Vue.use(Vuex);
 //Vuex를 사용한다.
 export const store = new Vuex.Store({
     state: {
-        news: []
+        news: [],
+        ask: [],
     },
     mutations: {
         SET_NEWS(state, news) {
             state.news = news;
+        },
+        SET_ASK(state, ask) {
+            state.ask = ask;
         }
     },
     actions: {
@@ -26,10 +31,16 @@ export const store = new Vuex.Store({
         FETCH_NEWS(context) {
             fetchNewsList()
                 .then(response => {
-                    console.log(response.data);
-                    //commit 기능을 통해 mutations에 데이터를 넘길 수 있음
-                    //커밋하는 순간, SET_NEWS 실행
                     context.commit('SET_NEWS', response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        FETCH_ASK(context) {
+            fetchAskList()
+                .then(response => {
+                    context.commit('SET_ASK', response.data);
                 })
                 .catch(error => {
                     console.log(error);

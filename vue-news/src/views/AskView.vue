@@ -1,30 +1,15 @@
 <template>
   <div>
-    <div v-for="a in ask">{{ a.title }}</div>
+    <div v-for="a in this.$store.state.ask">{{ a.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchAskList } from '../api/index.js'
 
 export default {
-  data() {
-    return {
-      ask: []
-    }
-  },
-  //created(): 컴포넌트가 생성되자마자 실행되는 로직이 들어감
   created() {
-    fetchAskList()
-    //화살표 함수: 컴포넌트를 그대로 가져다 쓸 수 있음
-      .then(response => {
-        console.log(this)
-        this.ask = response.data
-      })
-      //에러 핸들링에 대한 처리를 catch에서 다 받아줌
-      .catch(error => console.log(error))
-  }
-
+    this.$store.dispatch('FETCH_ASK');
+  },
 }
 </script>
 
