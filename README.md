@@ -207,3 +207,154 @@ map 헬퍼 함수
      
      </style>
      ```
+
+<br>
+
+store 속성 모듈화
+
+- 기존의 store
+
+- /src/store/index.js
+
+  ```javascript
+  import Vue from 'vue';
+  import Vuex from 'vuex';
+  import { fetchNewsList, fetchAskList, fetchJobsList } from '../api/index.js';
+  
+  Vue.use(Vuex);
+  
+  export const store = new Vuex.Store({
+      state: {
+          news: [],
+          ask: [],
+          jobs: [],
+      },
+      getters: {
+          fetchedNews(state) {
+              return state.news;
+          }
+      },
+      mutations: {
+          SET_NEWS(state, news) {
+              state.news = news;
+          },
+          SET_ASK(state, ask) {
+              state.ask = ask;
+          },
+          SET_JOBS(state, jobs) {
+              state.jobs = jobs;
+          }
+      },
+      actions: {
+          FETCH_NEWS(context) {
+              fetchNewsList()
+                  .then(response => {
+                      context.commit('SET_NEWS', response.data);
+                  })
+                  .catch(error => {
+                      console.log(error);
+                  })
+          },
+          FETCH_ASK({ commit }) {
+              fetchAskList()
+                  .then(({ data }) => {
+                      commit('SET_ASK', data);
+                  })
+                  .catch(error => {
+                      console.log(error);
+                  })
+          },
+          FETCH_JOBS(context) {
+              fetchJobsList()
+                  .then(response => {
+                      context.commit('SET_JOBS', response.data);
+                  })
+                  .catch(error => {
+                      console.log(error);
+                  })
+          }
+      }
+  });
+  ```
+
+<br>
+
+- store의 actions 속성과 mutations 속성 모듈화
+
+- /src/store/actions.js
+
+  ```javascript
+  import { fetchNewsList, fetchAskList, fetchJobsList } from '../api/index.js';
+  
+  export default {
+      FETCH_NEWS(context) {
+          fetchNewsList()
+              .then(response => {
+                  context.commit('SET_NEWS', response.data);
+              })
+              .catch(error => {
+                  console.log(error);
+              })
+      },
+      FETCH_ASK({ commit }) {
+          fetchAskList()
+              .then(({ data }) => {
+                  commit('SET_ASK', data);
+              })
+              .catch(error => {
+                  console.log(error);
+              })
+      },
+      FETCH_JOBS(context) {
+          fetchJobsList()
+              .then(response => {
+                  context.commit('SET_JOBS', response.data);
+              })
+              .catch(error => {
+                  console.log(error);
+              })
+      }
+  }
+  ```
+
+- /src/store/mutations.js
+
+  ```javascript
+  export default {
+      SET_NEWS(state, news) {
+          state.news = news;
+      },
+      SET_ASK(state, ask) {
+          state.ask = ask;
+      },
+      SET_JOBS(state, jobs) {
+          state.jobs = jobs;
+      }
+  }
+  ```
+
+- /src/store/index.js
+
+  ```javascript
+  import Vue from 'vue';
+  import Vuex from 'vuex';
+  import mutations from './mutations.js';
+  import actions from './actions.js';
+  
+  Vue.use(Vuex);
+  
+  export const store = new Vuex.Store({
+      state: {
+          news: [],
+          ask: [],
+          jobs: [],
+      },
+      getters: {
+          fetchedNews(state) {
+              return state.news;
+          }
+      },
+      mutations,
+      actions,
+  });
+  ```
