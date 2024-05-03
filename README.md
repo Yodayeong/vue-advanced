@@ -120,3 +120,90 @@ vuex 설치
   
   </style>
   ```
+
+<br>
+
+map 헬퍼 함수
+
+1. mapState
+
+   - /src/views/AskView.vue
+
+     ```vue
+     <template>
+       <div>
+         <div v-for="item in fetchedAsk">{{ item.title }}</div>
+       </div>
+     </template>
+     
+     <script>
+     import { mapState } from 'vuex';
+     
+     export default {
+       computed: {
+         ...mapState({
+           //vuex의 state.ask를 ask에 담은 것
+           fetchedAsk: state => state.ask
+         }),
+       },
+       created() {
+         this.$store.dispatch('FETCH_ASK');
+       },
+     }
+     </script>
+     
+     <style>
+     
+     </style>
+     ```
+
+2. mapGetters
+
+   - /src/store/index.js
+
+     ```javascript
+     import Vue from 'vue';
+     import Vuex from 'vuex';
+     import { fetchNewsList, fetchAskList, fetchJobsList } from '../api/index.js';
+     
+     Vue.use(Vuex);
+     
+     export const store = new Vuex.Store({
+         ...
+         getters: {
+             fetchedNews(state) {
+                 return state.news;
+             }
+         },
+         ...
+     });
+     ```
+
+   - /src/views/NewsView.vue
+
+     ```vue
+     <template>
+       <div>
+         <div v-for="item in fetchedNews">{{ item.title }}</div>
+       </div>
+     </template>
+     
+     <script>
+     import { mapGetters } from 'vuex';
+     
+     export default {
+       computed: {
+         ...mapGetters({
+           fetchedNews: 'fetchedNews'
+         }),
+       },
+       created() {
+         this.$store.dispatch('FETCH_NEWS');
+       },
+     }
+     </script>
+     
+     <style>
+     
+     </style>
+     ```
