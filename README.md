@@ -26,6 +26,11 @@ vuex의 구조
 - => actions는 API를 호출하기만 하고, 그 데이터를 꺼내와서 state에 담기 위해 mutations를 별도로 호출해야 한다.
 
 <br>
+vuex 설치
+- npm i vuex@3.6.2
+- 3.6.2로 버전 명시함
+
+<br>
 
 기존의 NewsView 수정
 
